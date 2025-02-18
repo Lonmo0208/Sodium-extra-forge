@@ -87,7 +87,8 @@ public abstract class MixinBeaconBlockEntityRenderer {
         Matrix4f positionMatrix = entry.getPositionMatrix();
         Matrix3f normalMatrix = entry.getNormalMatrix();
 
-        var normal = MatrixHelper.transformNormal(normalMatrix, (float) 0.0, (float) 1.0, (float) 0.0);
+        // 修改后的调用
+        var normal = MatrixHelper.transformNormal(normalMatrix, false, (float) 0.0, (float) 1.0, (float) 0.0);
 
         ptr = transformAndWriteVertex(ptr, positionMatrix, x1, height, z1, color, 1.0f, v1, normal);
         ptr = transformAndWriteVertex(ptr, positionMatrix, x1, yOffset, z1, color, 1.0f, v2, normal);
