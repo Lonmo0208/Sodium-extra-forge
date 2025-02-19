@@ -18,13 +18,18 @@ public class MixinFireworkParticle {
 
     @Inject(method = "addExplosionParticle", at = @At(value = "HEAD"), cancellable = true)
     public void addExplosionParticle(double x, double y, double z, double velocityX, double velocityY, double velocityZ, int[] colors, int[] fadeColors, boolean trail, boolean flicker, CallbackInfo ci) {
-        if (!SodiumExtraClientMod.options().particleSettings.otherMap.getOrDefault(this.fireworkIdentifier, true) || !SodiumExtraClientMod.options().particleSettings.particles) {
+        if (!SodiumExtraClientMod.options().particleSettings.otherMap.getOrDefault(this.fireworkIdentifier, true)) {
+            ci.cancel();
+        } else if (!SodiumExtraClientMod.options().particleSettings.particles) {
             ci.cancel();
         }
     }
 
     @WrapWithCondition(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/Particle;setColor(FFF)V"))
     public boolean tick(Particle instance, float red, float green, float blue) {
-        return instance != null;
+        if (instance == null) {
+            return false;
+        }
+        return true;
     }
 }
