@@ -1,10 +1,11 @@
 package me.flashyreese.mods.sodiumextra.mixin.sodium.cloud;
 
+import dev.architectury.patchedmixin.staticmixin.spongepowered.asm.mixin.injection.At;
+import dev.architectury.patchedmixin.staticmixin.spongepowered.asm.mixin.injection.ModifyVariable;
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 import me.jellysquid.mods.sodium.client.render.immediate.CloudRenderer;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+
 
 @Mixin(CloudRenderer.class)
 public class MixinCloudRenderer {
